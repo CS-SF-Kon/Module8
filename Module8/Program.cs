@@ -3,8 +3,8 @@ namespace Module8
 {
     internal class Program
     {
-        const string FileName = @"C:\Users\User\Desktop\students.dat"; // данные для 4 задания
-        const string Destination = @"C:\Users\User\Desktop\Students"; // данные для 4 задания
+        const string FileName = @"C:\Users\User\Desktop\students.dat"; // данные для четвёртого задания
+        const string Destination = @"C:\Users\User\Desktop\Students"; // данные для четвёртого задания
         static void Main(string[] args)
         {
             Cleaner.CleanUp(@"C:\test1" /* вставить путь к директории */); // метод для первого задания
@@ -37,11 +37,13 @@ namespace Module8
                 }
                 else
                 {
-                    using (StreamWriter sw = f.AppendText()) // если запусить код ещё раз, а файлы уже будут созданы и будут содержать данные об учениках, информация просто продублируется - не придумал, как это побороть
+                    using (StreamWriter sw = f.AppendText())
                     {
                         sw.WriteLine(string.Concat(student.Name, ", ", student.DateOfBirth, ", ", student.AverageScore));
                     }
                 }
+                /*если запусить код ещё раз, а файлы уже будут созданы и будут содержать данные об учениках, информация просто продублируется - не придумал, как это побороть
+                наверное, стоило сначала выделить перечень групп, разбить студентов по сущностям, обозначающим эти группы, а потом записать их в соответствующие файлы*/
             }
         }
 
@@ -50,8 +52,6 @@ namespace Module8
             List<Student> result = new();
             using FileStream fs = new FileStream(f, FileMode.Open);
             using StreamReader sr = new StreamReader(fs);
-
-            //Console.WriteLine(sr.ReadToEnd()); - зочемъ?
 
             fs.Position = 0;
 
